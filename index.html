@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De Barras Kitchen &amp; Coffee — Breakfast &amp; Lunch in Bantry, Co. Cork</title>
+  <meta name="description" content="De Barras Kitchen & Coffee — a cosy café in the heart of Bantry, Co. Cork. Breakfast until 12:00, lunch until 16:00. Speciality coffee on Velo beans. Mon–Sat 10:00–16:00.">
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts: Fraunces (classic serif display) + Work Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            graphite: {
+              DEFAULT: '#343B37', // sage-graphite of the shopfront
+              deep:    '#262C29',
+              soft:    '#4A534E',
+            },
+            cream:   '#F7F5F0',
+            latte:   '#E8E0D3',
+            caramel: {
+              DEFAULT: '#B07D50', // warm wood / coffee accent
+              deep:    '#8C6244',
+            },
+            chalk:   '#F2EFE9',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body:    ['"Work Sans"', 'system-ui', 'sans-serif'],
+            hand:    ['Caveat', 'cursive'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root { --graphite: #343B37; }
+    html { scroll-padding-top: 8rem; }
+    @media (min-width: 640px)  { html { scroll-padding-top: 10rem; } }
+    @media (min-width: 1024px) { html { scroll-padding-top: 12rem; } }
+    body { font-family: 'Work Sans', system-ui, sans-serif; }
+
+    /* Dotted price leader, like the chalkboard */
+    .leader {
+      flex: 1 1 auto;
+      margin: 0 .75rem;
+      border-bottom: 2px dotted rgba(242, 239, 233, .35);
+      transform: translateY(-.35em);
+    }
+    .leader-light {
+      border-bottom-color: rgba(52, 59, 55, .25);
+    }
+
+    /* Superscript cents, chalkboard style: 2.50 -> 2,⁵⁰ */
+    .cents {
+      font-size: .58em;
+      vertical-align: super;
+      letter-spacing: .02em;
+    }
+
+    /* Chalk texture on the menu board */
+    .chalkboard {
+      background-color: #262C29;
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.045) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 90%, rgba(255,255,255,.035) 0%, transparent 50%);
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* Visible keyboard focus */
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid #B07D50;
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-graphite antialiased">
+
+  <!-- ============ HEADER ============ -->
+  <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur border-b border-latte">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-28 sm:h-36 lg:h-44">
+
+      <!-- Logo: full vector recreation of the original hanging-sign sketch.
+           Text is part of the SVG artwork (non-selectable), black & white like the sketch. -->
+      <a href="#top" class="group inline-flex items-center py-1.5" aria-label="De Barras Kitchen & Coffee — home">
+        <svg class="h-24 sm:h-32 lg:h-40 w-auto transition-transform duration-200 group-hover:-translate-y-0.5"
+             viewBox="0 0 520 620" role="img" fill="none"
+             stroke="#1A1A1A" stroke-linecap="round" stroke-linejoin="round"
+             style="user-select:none; pointer-events:none;">
+          <title>De Barras — Kitchen / Coffee</title>
+
+          <!-- Bracket post & arm (double-line tube with rounded capsule end) -->
+          <path d="M 62 566 V 104 Q 62 56 110 56 H 444 Q 469 56 469 72 Q 469 87 444 87 H 130 Q 88 87 88 130 V 566" stroke-width="9"/>
+
+          <!-- Hangers (straps with rings), left & right -->
+          <g stroke-width="6">
+            <!-- left hanger -->
+            <line x1="155" y1="40" x2="155" y2="124"/>
+            <line x1="169" y1="40" x2="169" y2="124"/>
+            <ellipse cx="162" cy="40"  rx="13" ry="7"/>
+            <ellipse cx="162" cy="98"  rx="13" ry="7"/>
+            <ellipse cx="162" cy="124" rx="10" ry="7"/>
+            <!-- right hanger -->
+            <line x1="379" y1="40" x2="379" y2="124"/>
+            <line x1="393" y1="40" x2="393" y2="124"/>
+            <ellipse cx="386" cy="40"  rx="13" ry="7"/>
+            <ellipse cx="386" cy="98"  rx="13" ry="7"/>
+            <ellipse cx="386" cy="124" rx="10" ry="7"/>
+          </g>
+
+          <!-- Sign board -->
+          <rect x="100" y="122" width="344" height="330" rx="24" stroke-width="9"/>
+
+          <!-- Inner decorative frame with concave (notched) corners -->
+          <path d="M 178 162 H 366 A 38 38 0 0 0 404 200 V 374 A 38 38 0 0 0 366 412 H 178 A 38 38 0 0 0 140 374 V 200 A 38 38 0 0 0 178 162 Z" stroke-width="6"/>
+
+          <!-- Steam -->
+          <g stroke-width="5">
+            <path d="M 244 196 C 236 212 254 220 246 238 C 240 250 250 254 246 262"/>
+            <path d="M 268 162 C 258 182 280 190 271 212 C 263 230 279 236 271 252"/>
+            <path d="M 292 186 C 284 202 302 210 294 228 C 288 240 298 244 294 250"/>
+          </g>
+
+          <!-- Coffee cup -->
+          <g stroke-width="5">
+            <ellipse cx="262" cy="268" rx="64" ry="17"/>
+            <path d="M 198 268 C 200 304 222 326 262 326 C 302 326 324 304 326 268"/>
+            <!-- handle (left, double line) -->
+            <path d="M 200 274 C 165 264 157 300 194 310"/>
+            <path d="M 199 282 C 177 276 173 297 195 303"/>
+            <!-- saucer + swoosh -->
+            <path d="M 186 334 C 206 352 318 352 338 334"/>
+            <path d="M 210 358 C 258 374 336 364 356 338"/>
+          </g>
+
+          <!-- Wordmark (part of the artwork) -->
+          <g stroke="none" fill="#1A1A1A" font-family="Fraunces, Georgia, serif">
+            <text x="106" y="530" font-size="68" font-weight="700" letter-spacing="1">De Barras</text>
+            <text x="108" y="590" font-size="42" font-weight="500" letter-spacing="1">Kitchen / Coffee</text>
+          </g>
+        </svg>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium" aria-label="Main navigation">
+        <a href="#menu"    class="hover:text-caramel-deep transition-colors">Menu</a>
+        <a href="#about"   class="hover:text-caramel-deep transition-colors">About</a>
+        <a href="#contact" class="hover:text-caramel-deep transition-colors">Find&nbsp;us</a>
+        <a href="tel:+3532751924" class="inline-flex items-center gap-2 rounded-full bg-graphite text-cream px-5 py-2.5 hover:bg-graphite-deep transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          (027) 51924
+        </a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button id="nav-toggle" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-md border border-latte" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg id="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav id="mobile-nav" class="md:hidden hidden border-t border-latte bg-cream" aria-label="Mobile navigation">
+      <div class="px-4 py-4 flex flex-col gap-1 text-base font-medium">
+        <a href="#menu"    class="py-3 px-2 rounded hover:bg-latte/50">Menu</a>
+        <a href="#about"   class="py-3 px-2 rounded hover:bg-latte/50">About</a>
+        <a href="#contact" class="py-3 px-2 rounded hover:bg-latte/50">Find us</a>
+        <a href="tel:+3532751924" class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-graphite text-cream px-5 py-3">Call (027) 51924</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="relative overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-16 lg:pt-24 lg:pb-24 grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-center">
+
+        <div class="reveal is-visible">
+          <p class="text-xs sm:text-sm uppercase tracking-[0.3em] text-caramel-deep font-medium mb-5">
+            Town Lots &middot; Bantry &middot; Co. Cork
+          </p>
+          <h1 class="font-display font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.08] mb-6">
+            Breakfast in Bantry,<br>
+            <span class="italic font-medium text-caramel-deep">done properly.</span>
+          </h1>
+          <p class="text-graphite-soft text-lg leading-relaxed max-w-md mb-8">
+            A small kitchen and coffee house on the main street. Poached eggs, Irish smoked salmon, black pudding — and coffee worth crossing town for.
+          </p>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#menu" class="inline-flex items-center gap-2 rounded-full bg-graphite text-cream px-7 py-3.5 font-medium hover:bg-graphite-deep transition-colors">
+              View the menu
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+            <a href="#contact" class="inline-flex items-center gap-2 rounded-full border-2 border-graphite px-7 py-3 font-medium hover:bg-graphite hover:text-cream transition-colors">
+              Find us
+            </a>
+          </div>
+
+          <!-- Serving hours chips -->
+          <dl class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+            <div class="flex items-center gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-caramel" aria-hidden="true"></span>
+              <dt class="font-semibold">Breakfast</dt>
+              <dd class="text-graphite-soft">until 12:00</dd>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-caramel" aria-hidden="true"></span>
+              <dt class="font-semibold">Lunch</dt>
+              <dd class="text-graphite-soft">until 16:00</dd>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-graphite-soft" aria-hidden="true"></span>
+              <dt class="font-semibold">Sunday</dt>
+              <dd class="text-graphite-soft">closed</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Hero photo -->
+        <div class="reveal is-visible relative">
+          <div class="absolute -inset-3 rounded-[2rem] border-2 border-latte -rotate-2" aria-hidden="true"></div>
+          <figure class="relative rounded-[1.75rem] overflow-hidden shadow-xl shadow-graphite/15 bg-latte aspect-[4/3]">
+            <!-- Replace src with the real photo -->
+            <img
+              src="https://placehold.co/1200x900/E8E0D3/8C6244?text=Breakfast+photo"
+              alt="Poached eggs with Irish smoked salmon, microgreens and black pudding on dark brown bread"
+              class="w-full h-full object-cover"
+              width="1200" height="900" loading="eager">
+            <figcaption class="absolute bottom-4 left-4 bg-cream/95 backdrop-blur rounded-full px-4 py-2 text-xs font-medium tracking-wide flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8C6244" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              Fresh from the kitchen every morning
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVING TIMES BAND ============ -->
+    <section class="bg-caramel/10 border-y border-latte" aria-label="Serving times">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-10 text-center">
+        <p class="font-display text-lg sm:text-xl">
+          <span class="font-semibold">Breakfast</span> served until <span class="text-caramel-deep font-semibold">12:00</span>
+        </p>
+        <span class="hidden sm:block w-px h-6 bg-latte" aria-hidden="true"></span>
+        <p class="font-display text-lg sm:text-xl">
+          <span class="font-semibold">Lunch</span> served until <span class="text-caramel-deep font-semibold">16:00</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ MENU (chalkboard) ============ -->
+    <section id="menu" class="py-16 lg:py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+        <div class="text-center mb-10 lg:mb-14 reveal">
+          <p class="text-xs uppercase tracking-[0.3em] text-caramel-deep font-medium mb-3">Drinks menu</p>
+          <h2 class="font-display font-semibold text-3xl sm:text-4xl lg:text-5xl">Straight from our chalkboard</h2>
+        </div>
+
+        <!-- The board -->
+        <div class="chalkboard rounded-[1.5rem] text-chalk p-6 sm:p-10 lg:p-14 shadow-2xl shadow-graphite/25 ring-8 ring-white ring-offset-2 ring-offset-latte reveal">
+
+          <!-- Velo beans note -->
+          <div class="text-center mb-10 lg:mb-12">
+            <p class="font-hand text-3xl sm:text-4xl text-caramel mb-1">Velo</p>
+            <p class="text-sm sm:text-base text-chalk/70 max-w-md mx-auto">
+              Our coffee is brewed on Velo beans — notes of milk chocolate, almond shortbread &amp; orange.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-x-14 gap-y-12">
+
+            <!-- COFFEE -->
+            <div>
+              <h3 class="font-display font-semibold text-2xl sm:text-3xl tracking-wide border-b border-chalk/25 pb-3 mb-6">Coffee</h3>
+              <ul class="space-y-4 text-base sm:text-lg">
+                <li class="flex items-baseline"><span>Espresso</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">2.<span class="cents">50</span>&nbsp;&euro;</span></li>
+                <li class="flex items-baseline"><span>Americano</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">3.<span class="cents">00</span>&nbsp;&euro;</span></li>
+                <li class="flex items-baseline"><span>Macchiato</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">3.<span class="cents">00</span>&nbsp;&euro;</span></li>
+                <li class="flex items-baseline"><span>Flat White</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">3.<span class="cents">00</span>&nbsp;&euro;</span></li>
+                <li class="flex items-baseline">
+                  <span>Cappuccino</span><span class="leader" aria-hidden="true"></span>
+                  <span class="font-display whitespace-nowrap">3.<span class="cents">00</span>&nbsp;&euro; <span class="text-chalk/50 text-sm font-body">sml</span> &nbsp;/&nbsp; 3.<span class="cents">50</span>&nbsp;&euro; <span class="text-chalk/50 text-sm font-body">reg</span></span>
+                </li>
+                <li class="flex items-baseline"><span>Latte</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">3.<span class="cents">50</span>&nbsp;&euro;</span></li>
+                <li class="flex items-baseline"><span>Mocha</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">4.<span class="cents">00</span>&nbsp;&euro;</span></li>
+              </ul>
+            </div>
+
+            <!-- HOT DRINKS + ADD ONS -->
+            <div class="flex flex-col gap-12">
+              <div>
+                <h3 class="font-display font-semibold text-2xl sm:text-3xl tracking-wide border-b border-chalk/25 pb-3 mb-6">Hot Drinks</h3>
+                <ul class="space-y-4 text-base sm:text-lg">
+                  <li class="flex items-baseline"><span>Barry&rsquo;s Tea</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">2.<span class="cents">50</span>&nbsp;&euro;</span></li>
+                  <li class="flex items-baseline"><span>Herbal Tea</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">2.<span class="cents">50</span>&nbsp;&euro;</span></li>
+                  <li class="flex items-baseline"><span>Chai Latte</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">4.<span class="cents">00</span>&nbsp;&euro;</span></li>
+                  <li class="flex items-baseline">
+                    <span>Hot Chocolate</span><span class="leader" aria-hidden="true"></span>
+                    <span class="font-display whitespace-nowrap">3.<span class="cents">00</span>&nbsp;&euro; <span class="text-chalk/50 text-sm font-body">kids</span> &nbsp;/&nbsp; 4.<span class="cents">00</span>&nbsp;&euro; <span class="text-chalk/50 text-sm font-body">reg</span></span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-hand text-3xl text-caramel mb-4 underline decoration-2 decoration-chalk/30 underline-offset-8">Add Ons</h3>
+                <ul class="space-y-3.5 text-base sm:text-lg">
+                  <li class="flex items-baseline"><span>Espresso shot</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">1.<span class="cents">00</span>&nbsp;&euro;</span></li>
+                  <li class="flex items-baseline"><span>Syrup <span class="text-chalk/50 text-sm">vanilla &middot; caramel &middot; hazelnut</span></span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">0.<span class="cents">50</span>&nbsp;&euro;</span></li>
+                  <li class="flex items-baseline"><span>Oat milk</span><span class="leader" aria-hidden="true"></span><span class="font-display whitespace-nowrap">0.<span class="cents">50</span>&nbsp;&euro;</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kitchen note -->
+          <div class="mt-12 pt-8 border-t border-chalk/20 text-center">
+            <p class="font-display text-lg sm:text-xl">
+              Full kitchen menu in-house &mdash; breakfast till <span class="text-caramel font-semibold">12:00</span>, lunch till <span class="text-caramel font-semibold">16:00</span>.
+            </p>
+            <p class="text-chalk/60 text-sm mt-2">Around 10&ndash;20&nbsp;&euro; per person.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="bg-graphite text-cream py-16 lg:py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="reveal">
+          <p class="text-xs uppercase tracking-[0.3em] text-caramel font-medium mb-4">About us</p>
+          <h2 class="font-display font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-6">
+            A kitchen &amp; coffee house in the heart of Bantry
+          </h2>
+          <p class="text-cream/75 text-lg leading-relaxed mb-5">
+            De Barras is where Bantry starts its morning: proper breakfasts, honest lunches and carefully made coffee, all under one roof on the town&rsquo;s main street.
+          </p>
+          <p class="text-cream/75 text-lg leading-relaxed">
+            Everything is cooked to order, the tables outside catch the morning sun, and the chalkboard changes with the seasons. Drop in — we open at ten.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 reveal">
+          <div class="rounded-2xl bg-graphite-deep/60 border border-cream/10 p-6">
+            <p class="font-display text-4xl font-semibold text-caramel mb-1">4.4<span class="text-xl">/5</span></p>
+            <p class="text-sm text-cream/60">Google rating, 236 reviews</p>
+          </div>
+          <div class="rounded-2xl bg-graphite-deep/60 border border-cream/10 p-6">
+            <p class="font-display text-4xl font-semibold text-caramel mb-1">10&ndash;20&nbsp;&euro;</p>
+            <p class="text-sm text-cream/60">Average per person</p>
+          </div>
+          <div class="rounded-2xl bg-graphite-deep/60 border border-cream/10 p-6">
+            <p class="font-display text-4xl font-semibold text-caramel mb-1">10:00</p>
+            <p class="text-sm text-cream/60">Doors open, Mon&ndash;Sat</p>
+          </div>
+          <div class="rounded-2xl bg-graphite-deep/60 border border-cream/10 p-6">
+            <p class="font-display text-4xl font-semibold text-caramel mb-1">Velo</p>
+            <p class="text-sm text-cream/60">Speciality coffee beans</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOCATION & HOURS ============ -->
+    <section id="contact" class="py-16 lg:py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 lg:mb-14 reveal">
+          <p class="text-xs uppercase tracking-[0.3em] text-caramel-deep font-medium mb-3">Find us</p>
+          <h2 class="font-display font-semibold text-3xl sm:text-4xl lg:text-5xl">On the main street in Bantry</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 items-stretch">
+
+          <!-- Map placeholder -->
+          <div class="reveal rounded-[1.5rem] overflow-hidden border border-latte bg-latte/50 min-h-[320px] relative flex items-center justify-center">
+            <!--
+              Replace this block with a live embed:
+              <iframe src="https://www.google.com/maps?q=De+Barras,+Town+Lots,+Bantry,+Co.+Cork&output=embed"
+                      class="absolute inset-0 w-full h-full border-0" loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade" title="De Barras on Google Maps"></iframe>
+            -->
+            <div class="text-center px-6">
+              <svg class="mx-auto mb-4" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#8C6244" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <p class="font-display text-xl font-semibold mb-1">Google Map</p>
+              <p class="text-graphite-soft text-sm mb-5">Town Lots, Bantry &mdash; on the N71, next to Wolfe Tone Square</p>
+              <a href="https://maps.google.com/?q=De+Barras,+Town+Lots,+Bantry,+Co.+Cork,+P75+CD30" target="_blank" rel="noopener"
+                 class="inline-flex items-center gap-2 rounded-full border-2 border-graphite px-6 py-2.5 text-sm font-medium hover:bg-graphite hover:text-cream transition-colors">
+                Open in Google Maps
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Details card -->
+          <div class="reveal rounded-[1.5rem] bg-white border border-latte p-7 sm:p-9 shadow-lg shadow-graphite/5 flex flex-col gap-7">
+
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.25em] text-caramel-deep font-semibold mb-3">Address</h3>
+              <p class="font-display text-xl leading-snug">Town Lots, Bantry,<br>Co. Cork, P75 CD30</p>
+            </div>
+
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.25em] text-caramel-deep font-semibold mb-3">Opening hours</h3>
+              <dl class="space-y-2 text-base">
+                <div class="flex items-baseline justify-between gap-4">
+                  <dt>Monday &ndash; Saturday</dt>
+                  <dd class="font-semibold whitespace-nowrap">10:00 &ndash; 16:00</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-4">
+                  <dt>Sunday</dt>
+                  <dd class="font-semibold text-caramel-deep">Closed</dd>
+                </div>
+              </dl>
+              <p class="mt-3 text-sm text-graphite-soft">Breakfast until 12:00 &middot; Lunch until 16:00</p>
+            </div>
+
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.25em] text-caramel-deep font-semibold mb-3">Phone</h3>
+              <a href="tel:+3532751924" class="font-display text-2xl font-semibold hover:text-caramel-deep transition-colors">(027) 51924</a>
+            </div>
+
+            <a href="tel:+3532751924" class="mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-graphite text-cream px-7 py-3.5 font-medium hover:bg-graphite-deep transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+              Call us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-graphite-deep text-cream/70">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-md border border-cream/25" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 8h1a3 3 0 0 1 0 6h-1"/><path d="M3 8h14v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8Z"/><path d="M7.5 2.5c-.6 1 .6 1.5 0 2.5M11 2.5c-.6 1 .6 1.5 0 2.5"/>
+          </svg>
+        </span>
+        <p class="text-sm">
+          &copy; <span id="year">2026</span> De Barras Kitchen &amp; Coffee &middot; Bantry, Co. Cork
+        </p>
+      </div>
+
+      <div class="flex items-center gap-5">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="De Barras on Facebook"
+           class="inline-flex items-center justify-center w-11 h-11 rounded-full border border-cream/25 hover:bg-cream hover:text-graphite-deep transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.9V11H8v3h2.5v7h3Z"/>
+          </svg>
+        </a>
+        <a href="tel:+3532751924" class="text-sm hover:text-cream transition-colors">(027) 51924</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav
+    const toggle = document.getElementById('nav-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = !mobileNav.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      iconOpen.classList.toggle('hidden', isOpen);
+      iconClose.classList.toggle('hidden', !isOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }));
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal (respects prefers-reduced-motion via CSS)
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
